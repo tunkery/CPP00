@@ -31,7 +31,12 @@ static bool is_blank(const std::string s)
 	return (std::any_of(s.begin(), s.end(), ::isspace));
 }
 
-int	Contact::show_list(PhoneBook book, int i, std::string str)
+bool Contact::check_checker(Contact contacts)
+{
+	return (contacts.check);
+}
+
+int	PhoneBook::show_list(PhoneBook book, int i, std::string str)
 {
 	int	j;
 	int k;
@@ -42,24 +47,24 @@ int	Contact::show_list(PhoneBook book, int i, std::string str)
 	k = 0;
 	l = 0;
 	i = str[0] - 48;
-	if (is_valid(book, i, str) == -1)
+	if (book.contacts[0].is_valid(book, i, str) == -1)
 	{
-		std::cout << "The input needs to be numeric and between 1 and 8!\n";
-		search_helper(book, i);
+		std::cout << "The input needs to be numeric and between 1 and 8!" << std::endl;
+		book.contacts[0].search_helper(book, i);
 		return (-1);
 	}
-	i = is_valid(book, i, str);
-	if (!book.contacts[i - 1].check)
+	i = book.contacts[0].is_valid(book, i, str);
+	if (!book.contacts[i - 1].check_checker(book.contacts[i - 1]))
 	{
 		if (i < 1 || i > 8)
-			std::cout << "The input needs to be between 1 and 8!\n";
+			std::cout << "The input needs to be between 1 and 8!" << std::endl;
 		else
-			std::cout << "No saved contact at this index\n";
+			std::cout << "No saved contact at this index" << std::endl;
 		return (-1);
 	}
-	std::cout << "|-------------------------------------------|\n";
-	std::cout << "|     Index|First name| Last name|  Nickname|\n";
-	std::cout << "|----------|----------|----------|----------|\n";
+	std::cout << " ------------------------------------------- " << std::endl;
+	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
 	std::cout << "|         " << i;
 	i--;
 	while (j < 3)
@@ -78,8 +83,8 @@ int	Contact::show_list(PhoneBook book, int i, std::string str)
 		j++;
 		k++;
 	}
-	std::cout << "|\n";
-	std::cout << "|-------------------------------------------|\n";
+	std::cout << "|" << std::endl;
+	std::cout << " ------------------------------------------- " << std::endl;
 	return (0);
 }
 
@@ -87,6 +92,8 @@ int main(int ac, char **av)
 {
 	PhoneBook book;
 	std::string input;
+	std::string str;
+	(void)av;
 	int i;
 
 	if (ac > 1)
@@ -100,7 +107,7 @@ int main(int ac, char **av)
 		std::cout << "Enter command: ";
 		if (!std::getline(std::cin, input))
 		{
-			std::cout << "\nEnd of the input\n";
+			std::cout  << std::endl << "End of the input" << std::endl;
 			return (0);
 		}
 		if (input == "EXIT")
@@ -111,7 +118,7 @@ int main(int ac, char **av)
 				i--;
 			if (book.contacts[i].add_helper(&book, i) == -1)
 			{
-				std::cout << "\nEnd of the input\n";
+				std::cout  << std::endl << "End of the input" << std::endl;
 				return (0);
 			}
 			i++;
@@ -122,13 +129,14 @@ int main(int ac, char **av)
 				i--;
 			if (book.contacts[i].search_helper(book, i) == -1)
 			{
-				std::cout << "\nEnd of the input\n";
+				std::cout << std::endl << "End of the input" << std::endl;
 				return (0);
 			}
+			str = book.show_list(book, i, )
 		}
 		else if (input.empty() || is_blank(input))
 			continue ;
 	}
-	std::cout << "Exiting the program\n";
+	std::cout << "Exiting the program" << std::endl;
 	return (0);
 }
