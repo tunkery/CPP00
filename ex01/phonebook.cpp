@@ -50,18 +50,21 @@ int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 	if (contact.is_valid(i, str) == -1)
 	{
 		std::cout << "The input needs to be numeric and between 1 and 8!" << std::endl;
-		contact.search_helper(contact, i);
-		return (-1);
+		return (-2);
 	}
 	i = contact.is_valid(i, str);
-	// if (!book.contacts[i - 1].check_checker(book.contacts[i - 1]))
 	if (!contact.check_checker(contact))
 	{
 		if (i < 1 || i > 8)
+		{
 			std::cout << "The input needs to be between 1 and 8!" << std::endl;
+			return (-2);
+		}
 		else
+		{
 			std::cout << "No saved contact at this index" << std::endl;
-		return (-1);
+			return (0);
+		}
 	}
 	std::cout << " ------------------------------------------- " << std::endl;
 	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
@@ -89,11 +92,6 @@ int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 	return (0);
 }
 
-void PhoneBook::access_printy(PhoneBook book, int i)
-{
-	book.contacts[i].printy(book.contacts[i]);
-}
-
 int main(int ac, char **av)
 {
 	PhoneBook book;
@@ -101,6 +99,7 @@ int main(int ac, char **av)
 	std::string str;
 	(void)av;
 	int i;
+	int check;
 
 	if (ac > 1)
 	{
@@ -131,21 +130,17 @@ int main(int ac, char **av)
 		}
 		else if (input == "SEARCH")
 		{
-			// i--;
-			// book.access_printy(book, i);
-			if (book.search(&book, (i - 1)) == -1)
+			while (1)
 			{
-				std::cout << std::endl << "End of the input" << std::endl;
-				return (0);
+				check = book.search(&book, (i - 1));
+				if (check == -1)
+				{
+					std::cout << std::endl << "End of the input" << std::endl;
+					return (0);
+				}
+				if (check == 0)
+					break ;
 			}
-			// if (i > 8)
-			// 	i--;
-			// if (book.contacts[i].search_helper(book, i) == -1)
-			// {
-			// 	std::cout << std::endl << "End of the input" << std::endl;
-			// 	return (0);
-			// }
-			// // str = book.show_list(book, i, )
 		}
 		else if (input.empty() || is_blank(input))
 			continue ;

@@ -17,8 +17,6 @@ class Contact
 		int show_list(PhoneBook book, Contact contact, int i, std::string str);
 		int is_valid(int i, std::string str);
 		bool check_checker(Contact contacts);
-		int heyyo(Contact *contact, int i, std::string str);
-		void printy(Contact contact);
 };
 
 class PhoneBook
@@ -28,8 +26,6 @@ class PhoneBook
 	public:
 		int add(PhoneBook *book, int i);
 		int search(PhoneBook *book, int i);
-		void access_printy(PhoneBook book, int i);
-		// int show_list(PhoneBook book, int i, std::string str);
 };
 
 #endif
