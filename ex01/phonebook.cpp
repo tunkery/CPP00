@@ -1,6 +1,6 @@
 #include "lib.hpp"
 
-int Contact::is_valid(PhoneBook book, int i, std::string str)
+int Contact::is_valid(int i, std::string str)
 {
 	int check;
 	int	pos;
@@ -36,7 +36,7 @@ bool Contact::check_checker(Contact contacts)
 	return (contacts.check);
 }
 
-int	PhoneBook::show_list(PhoneBook book, int i, std::string str)
+int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 {
 	int	j;
 	int k;
@@ -47,14 +47,15 @@ int	PhoneBook::show_list(PhoneBook book, int i, std::string str)
 	k = 0;
 	l = 0;
 	i = str[0] - 48;
-	if (book.contacts[0].is_valid(book, i, str) == -1)
+	if (contact.is_valid(i, str) == -1)
 	{
 		std::cout << "The input needs to be numeric and between 1 and 8!" << std::endl;
-		book.contacts[0].search_helper(book, i);
+		contact.search_helper(contact, i);
 		return (-1);
 	}
-	i = book.contacts[0].is_valid(book, i, str);
-	if (!book.contacts[i - 1].check_checker(book.contacts[i - 1]))
+	i = contact.is_valid(i, str);
+	// if (!book.contacts[i - 1].check_checker(book.contacts[i - 1]))
+	if (!contact.check_checker(contact))
 	{
 		if (i < 1 || i > 8)
 			std::cout << "The input needs to be between 1 and 8!" << std::endl;
@@ -70,7 +71,7 @@ int	PhoneBook::show_list(PhoneBook book, int i, std::string str)
 	while (j < 3)
 	{
 		l = 0;
-		s = book.contacts[i].info[k];
+		s = contact.info[k];
 		if (s.size() > 10)
 			s = s.substr(0, 9) + '.';
 		std::cout << '|';
@@ -86,6 +87,11 @@ int	PhoneBook::show_list(PhoneBook book, int i, std::string str)
 	std::cout << "|" << std::endl;
 	std::cout << " ------------------------------------------- " << std::endl;
 	return (0);
+}
+
+void PhoneBook::access_printy(PhoneBook book, int i)
+{
+	book.contacts[i].printy(book.contacts[i]);
 }
 
 int main(int ac, char **av)
@@ -116,7 +122,7 @@ int main(int ac, char **av)
 		{
 			if (i == 8)
 				i--;
-			if (book.contacts[i].add_helper(&book, i) == -1)
+			if (book.add(&book, i) == -1)
 			{
 				std::cout  << std::endl << "End of the input" << std::endl;
 				return (0);
@@ -125,14 +131,21 @@ int main(int ac, char **av)
 		}
 		else if (input == "SEARCH")
 		{
-			if (i > 8)
-				i--;
-			if (book.contacts[i].search_helper(book, i) == -1)
+			// i--;
+			// book.access_printy(book, i);
+			if (book.search(&book, (i - 1)) == -1)
 			{
 				std::cout << std::endl << "End of the input" << std::endl;
 				return (0);
 			}
-			str = book.show_list(book, i, )
+			// if (i > 8)
+			// 	i--;
+			// if (book.contacts[i].search_helper(book, i) == -1)
+			// {
+			// 	std::cout << std::endl << "End of the input" << std::endl;
+			// 	return (0);
+			// }
+			// // str = book.show_list(book, i, )
 		}
 		else if (input.empty() || is_blank(input))
 			continue ;

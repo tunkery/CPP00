@@ -12,11 +12,13 @@ class Contact
 		bool check;
 
 	public:
-		int add_helper(PhoneBook *book, int i);
-		std::string search_helper(PhoneBook book, int i);
-		// int show_list(PhoneBook book, int i, std::string str);
-		int is_valid(PhoneBook book, int i, std::string str);
+		int add_helper(PhoneBook *book, int i, Contact *contact);
+		std::string search_helper(Contact contact, int i);
+		int show_list(PhoneBook book, Contact contact, int i, std::string str);
+		int is_valid(int i, std::string str);
 		bool check_checker(Contact contacts);
+		int heyyo(Contact *contact, int i, std::string str);
+		void printy(Contact contact);
 };
 
 class PhoneBook
@@ -24,9 +26,10 @@ class PhoneBook
 	private:
 		Contact contacts[8];
 	public:
-		int add();
-		int search();
-		int show_list(PhoneBook book, int i, std::string str);
+		int add(PhoneBook *book, int i);
+		int search(PhoneBook *book, int i);
+		void access_printy(PhoneBook book, int i);
+		// int show_list(PhoneBook book, int i, std::string str);
 };
 
 #endif
