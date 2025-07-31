@@ -3,6 +3,7 @@
 # include <iostream>
 # include <limits>
 # include <string>
+# include <algorithm>
 
 class PhoneBook;
 class Contact

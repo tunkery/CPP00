@@ -130,6 +130,11 @@ int main(int ac, char **av)
 		}
 		else if (input == "SEARCH")
 		{
+			if (i == 0)
+			{
+				std::cout << "The Phonebook is empty, to add a contact please type 'ADD'" << std::endl;
+				continue ;
+			}
 			while (1)
 			{
 				check = book.search(&book, (i - 1));

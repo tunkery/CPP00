@@ -10,12 +10,21 @@ int PhoneBook::search(PhoneBook *book, int i)
 {
 	std::string str;
 	int check;
+	int j;
 
 	check = 0;
 	str = book->contacts[i].search_helper(book->contacts[i], i);
 	if (str == "")
 		return (-1);
-	check = book->contacts[i].show_list(*book, book->contacts[i], i, str);
+	j = str[0] - 48;
+	if (j > 0)
+		j--;
+	if (j > 7)
+	{
+			std::cout << "The input needs to be between 1 and 8!" << std::endl;
+			return (0);
+	}
+	check = book->contacts[i].show_list(*book, book->contacts[j], i, str);
 	return (check);
 }
 
