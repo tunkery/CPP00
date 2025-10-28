@@ -10,7 +10,12 @@
 
 #pragma once
 #ifndef __ACCOUNT_H__
-#define __ACCOUNT_H__
+# define __ACCOUNT_H__
+# include <ctime>
+# include <string>
+# include <algorithm>
+# include <iostream>
+# include <limits>
 
 // ************************************************************************** //
 //                               Account Class                                //
@@ -18,7 +23,7 @@
 
 class Account {
 
-
+// static functions can't reach the non static variables in the classes.
 public:
 
 	typedef Account		t;
