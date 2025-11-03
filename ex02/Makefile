@@ -11,7 +11,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c lib.hpp
+%.o: %.c Account.hpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
