@@ -28,19 +28,19 @@ public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void );
-	static int	getTotalAmount( void ); // the amount of money in the account
-	static int	getNbDeposits( void );
-	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void );
+	static int	getNbAccounts( void ); // +
+	static int	getTotalAmount( void ); // + the amount of money in the account
+	static int	getNbDeposits( void ); // +
+	static int	getNbWithdrawals( void ); // +
+	static void	displayAccountsInfos( void ); 
 
 	Account( int initial_deposit );
 	~Account( void );
 
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const;
-	void	displayStatus( void ) const;
+	int		checkAmount( void ) const; // +
+	void	displayStatus( void ) const; // bu her seyin totalini gosteren fonksiyon
 
 
 private:
@@ -50,7 +50,7 @@ private:
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
 
-	static void	_displayTimestamp( void );
+	static void	_displayTimestamp( void ); // +
 
 	int				_accountIndex;
 	int				_amount;
@@ -61,7 +61,29 @@ private:
 
 };
 
+Account::Account( int initial_deposit )
+{
+	if (_nbAccounts <= 100 && _nbAccounts >= 0)
+		_accountIndex = _nbAccounts;
+	else
+	{
+		_nbAccounts = 0;
+		_accountIndex = _nbAccounts;
+	}
+	_accountIndex++;
+	_amount = initial_deposit;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
+	std::cout << ";created" << std::endl;
 
+}
+
+Account::~Account( void )
+{
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
+	std::cout << ";closed" << std::endl;
+}
 
 // ************************************************************************** //
 // vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
