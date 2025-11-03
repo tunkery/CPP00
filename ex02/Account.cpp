@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:27:39 by bolcay            #+#    #+#             */
-/*   Updated: 2025/11/03 10:13:13 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/11/03 10:31:03 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ void    Account::makeDeposit(int deposit)
 {
 	Account::_totalNbDeposits++;
 	Account::_totalAmount += deposit;
-
+	_amount += deposit;
+	displayStatus();
+	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount
+			  << ";deposit:" << deposit << ";amount:" << _amount
+			  << ";nb_deposits:" << _nbDeposits;
 }
 
 bool    Account::makeWithdrawal(int withdrawal)

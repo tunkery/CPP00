@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 
-#pragma once
+// #pragma once
 #ifndef __ACCOUNT_H__
 # define __ACCOUNT_H__
 # include <ctime>
@@ -61,6 +61,20 @@ private:
 
 };
 
+Account::Account( void )
+{
+	if (_nbAccounts <= 100 && _nbAccounts >= 0)
+		_accountIndex = _nbAccounts;
+	else
+	{
+		_nbAccounts = 0;
+		_totalAmount = 0;
+		_totalNbDeposits = 0;
+		_totalNbWithdrawals = 0;
+		_accountIndex = _nbAccounts;
+	}
+}
+
 Account::Account( int initial_deposit )
 {
 	if (_nbAccounts <= 100 && _nbAccounts >= 0)
@@ -68,10 +82,16 @@ Account::Account( int initial_deposit )
 	else
 	{
 		_nbAccounts = 0;
+		_totalAmount = 0;
+		_totalNbDeposits = 0;
+		_totalNbWithdrawals = 0;
 		_accountIndex = _nbAccounts;
 	}
-	_accountIndex++;
+	_nbAccounts++;
 	_amount = initial_deposit;
+	_totalAmount += initial_deposit;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
 	std::cout << ";created" << std::endl;
