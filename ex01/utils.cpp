@@ -17,6 +17,11 @@ int PhoneBook::search(PhoneBook *book, int i)
 	if (str == "")
 		return (-1);
 	j = str[0] - 48;
+	if (j < 0)
+	{
+		std::cout << "The input needs to be between 1 and 8 without any spaces!" << std::endl;
+		return (0);
+	}
 	if (j > 0)
 		j--;
 	if (j > 7)
@@ -30,17 +35,44 @@ int PhoneBook::search(PhoneBook *book, int i)
 
 static bool is_alpha(const std::string s)
 {
-	return (std::all_of(s.begin(), s.end(), :: isalpha));
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!isalpha(s[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 static bool is_digit(const std::string s)
 {
-	return (std::all_of(s.begin(), s.end(), ::isdigit));
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!isdigit(s[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 static bool is_blank(const std::string s)
 {
-	return (std::all_of(s.begin(), s.end(), ::isspace));
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!isspace(s[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 int Contact::add_helper(PhoneBook *book, int i, Contact *contact)
@@ -119,6 +151,38 @@ int Contact::add_helper(PhoneBook *book, int i, Contact *contact)
 	return (0);
 }
 
+static bool	any_digit(const std::string s)
+{
+	int	i;
+
+	i = 0;
+	if (!s[i])
+		return (false);
+	while (s[i])
+	{
+		if (isdigit(s[i]))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+static bool	any_space(const std::string s)
+{
+	int	i;
+
+	i = 0;
+	if (!s[i])
+		return (false);
+	while (s[i])
+	{
+		if (isspace(s[i]))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 std::string Contact::search_helper(Contact contact, int i)
 {
 	std::string str;
@@ -128,8 +192,7 @@ std::string Contact::search_helper(Contact contact, int i)
 		return ("");
 	while (str.empty() || is_blank(str) || !is_digit(str))
 	{
-		if (std::any_of(str.begin(), str.end(), ::isdigit)
-			&& std::any_of(str.begin(), str.end(), ::isspace))
+		if (any_space(str) && any_digit(str))
 			break ;
 		if (!is_digit(str))
 		{

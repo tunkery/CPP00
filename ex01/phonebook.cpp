@@ -28,7 +28,16 @@ int Contact::is_valid(int i, std::string str)
 
 static bool is_blank(const std::string s)
 {
-	return (std::any_of(s.begin(), s.end(), ::isspace));
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (isspace(s[i]))
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 bool Contact::check_checker(Contact contacts)
