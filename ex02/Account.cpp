@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:27:39 by bolcay            #+#    #+#             */
-/*   Updated: 2025/11/03 10:48:45 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:10:20 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int	Account::getNbWithdrawals( void )
 
 void    Account::makeDeposit(int deposit)
 {
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount;
 	Account::_totalNbDeposits++;
 	Account::_totalAmount += deposit;
 	_amount += deposit;
-	_displayTimestamp();
-	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount
-			  << ";deposit:" << deposit << ";amount:" << _amount
+	_nbDeposits++;
+	std::cout << ";deposit:" << deposit << ";amount:" << _amount
 			  << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
@@ -54,13 +55,16 @@ bool    Account::makeWithdrawal(int withdrawal)
 
 	status = false;
 	if (_amount >= withdrawal)
-	{
 		status = true;
-		Account::_totalNbWithdrawals++;
-		Account::_totalAmount -= withdrawal;
-	}
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount;
+	if (status)
+	{
+		Account::_totalNbWithdrawals++;
+		Account::_totalAmount -= withdrawal;
+		_nbWithdrawals++;
+		_amount -= withdrawal;
+	}
 	if (status)
 		std::cout << ";withdrawal:" << withdrawal << ";amount:"
 				  << _amount << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
@@ -103,30 +107,15 @@ void Account::_displayTimestamp(void)
 
 Account::Account( void )
 {
-	// if (_nbAccounts <= 100 && _nbAccounts >= 0)
-	// 	_accountIndex = _nbAccounts;
-	// else
-	// {
-	// 	_nbAccounts = 0;
-	// 	_totalAmount = 0;
-	// 	_totalNbDeposits = 0;
-	// 	_totalNbWithdrawals = 0;
-	// 	_accountIndex = _nbAccounts;
-	// }
+	_accountIndex = _nbAccounts;
+	_nbAccounts++;
+	_amount = 0;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 }
 
 Account::Account( int initial_deposit )
 {
-	// if (_nbAccounts <= 100 && _nbAccounts >= 0)
-	// 	_accountIndex = _nbAccounts;
-	// else
-	// {
-	// 	_nbAccounts = 0;
-	// 	_totalAmount = 0;
-	// 	_totalNbDeposits = 0;
-	// 	_totalNbWithdrawals = 0;
-	// 	_accountIndex = _nbAccounts;
-	// }
 	_accountIndex = _nbAccounts;
 	_nbAccounts++;
 	_amount = initial_deposit;
