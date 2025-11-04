@@ -26,7 +26,7 @@ int Contact::is_valid(int i, std::string str)
 	return (check);
 }
 
-static bool is_blank(const std::string s)
+static bool any_blank(const std::string s)
 {
 	int	i;
 
@@ -156,7 +156,7 @@ int main(int ac, char **av)
 					break ;
 			}
 		}
-		else if (input.empty() || is_blank(input))
+		else if (input.empty() || any_blank(input))
 			continue ;
 	}
 	std::cout << "Exiting the program" << std::endl;
