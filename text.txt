@@ -1,0 +1,11 @@
+1- In megaphone make the ex00 without the algorithm functions and more in a c++ manner
+
+2- In phonebook fix the search option according to the pdf file.
+
+3- In phonebook replace the newest contact with the oldest if the list is full. rn it replaces the last one.
+
+4- In phonebook fix the library issue. The files containing class functions should be named accordingly and make one more library for the phonebook class.
+
+5- In phonebook use iomanip for formatting instead of hardcoing it (setw).
+
+6- 
