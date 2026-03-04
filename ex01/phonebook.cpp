@@ -75,11 +75,18 @@ int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 			return (0);
 		}
 	}
-	std::cout << " ------------------------------------------- " << std::endl;
-	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
+	// std::cout << " ------------------------------------------- " << std::endl;
+	// std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
+	// std::cout << "|----------|----------|----------|----------|" << std::endl;
+	// std::cout << "|         " << i;
+	std::cout << " " << std::setfill('-') << std::setw(43) << " " << std::endl;
+	std::cout << "|" << std::setw(10) << "Index" << "|" << "First name" << "|"
+			<< std::setw(10) << "Last name" << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
-	std::cout << "|         " << i;
+	std::cout << "|" << std::setw(10) << i;
 	i--;
+	// make the bottom part with setw function too and also change the function to show
+	// every contact instead of just one. you can keep the way you show the contacts indevidually.
 	while (j < 3)
 	{
 		l = 0;
