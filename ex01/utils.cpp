@@ -1,5 +1,17 @@
 #include "lib.hpp"
 
+void	PhoneBook::set_count(PhoneBook *book)
+{
+	book->count = 0;
+}
+
+void	PhoneBook::increment_count(PhoneBook *book)
+{
+	if (book->count == 8)
+		return ;
+	book->count++;
+}
+
 int PhoneBook::add(PhoneBook *book, int i)
 {
 	if (book->contacts[i].add_helper(book, i, &book->contacts[i]) == -1)
@@ -29,6 +41,7 @@ int PhoneBook::search(PhoneBook *book, int i)
 			std::cout << "The input needs to be between 1 and 8!" << std::endl;
 			return (0);
 	}
+	// book->list_all_contacts(book, book->contacts, 0);
 	check = book->contacts[i].show_list(*book, book->contacts[j], i, str);
 	return (check);
 }

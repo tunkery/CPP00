@@ -6,7 +6,7 @@
 /*   By: bolcay <bolcay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:27:39 by bolcay            #+#    #+#             */
-/*   Updated: 2025/11/04 16:10:20 by bolcay           ###   ########.fr       */
+/*   Updated: 2025/11/04 17:22:53 by bolcay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ Account::Account( void )
 	_amount = 0;
 	_nbDeposits = 0;
 	_nbWithdrawals = 0;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
+	std::cout << ";created" << std::endl;
 }
 
 Account::Account( int initial_deposit )

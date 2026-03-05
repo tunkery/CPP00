@@ -40,9 +40,51 @@ static bool any_blank(const std::string s)
 	return (false);
 }
 
+std::string	Contact::contact_returner(Contact *contact, int i)
+{
+	return (contact->info[i]);
+}
+
 bool Contact::check_checker(Contact contacts)
 {
 	return (contacts.check);
+}
+
+int	PhoneBook::list_all_contacts(PhoneBook *book, int i)
+{
+	std::string	s;
+	int			j;
+	int			k;
+	int			l;
+	int			m;
+
+	j = 1;
+	l = 0;
+	while (j < book->count || j == book->count)
+	{
+		std::cout << " " << std::setfill('-') << std::setw(44) << " " << std::endl;
+		std::cout << "|" << std::setfill(' ') << std::setw(10) << "Index" << "|" << "First name" << "|"
+				<< std::setw(10) << "Last name" << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+		std::cout << "|" << std::setfill('-') << std::setw(11) << "|" << std::setw(11) << "|"
+				<< std::setw(11) << "|" << std::setw(11) << "|" << std::endl;
+		std::cout << "|" << std::setfill(' ') << std::setw(10) << j;
+		m = 0;
+		k = 0;
+		while (m < 3)
+		{
+			s = book->contacts[l].contact_returner(&book->contacts[l], k);
+			if (s.size() > 10)
+				s = s.substr(0, 9) + '.';
+			std::cout << '|' << std::setw(10) << s;
+			k++;
+			m++;
+		}
+		std::cout << "|" << std::endl;
+		std::cout << " " << std::setfill('-') << std::setw(44) << " " << std::endl;
+		j++;
+		l++;
+	}
+	return (0);
 }
 
 int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
@@ -75,36 +117,20 @@ int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 			return (0);
 		}
 	}
-	// std::cout << " ------------------------------------------- " << std::endl;
-	// std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
-	// std::cout << "|----------|----------|----------|----------|" << std::endl;
-	// std::cout << "|         " << i;
-	std::cout << " " << std::setfill('-') << std::setw(43) << " " << std::endl;
-	std::cout << "|" << std::setw(10) << "Index" << "|" << "First name" << "|"
-			<< std::setw(10) << "Last name" << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
-	std::cout << "|----------|----------|----------|----------|" << std::endl;
-	std::cout << "|" << std::setw(10) << i;
-	i--;
-	// make the bottom part with setw function too and also change the function to show
-	// every contact instead of just one. you can keep the way you show the contacts indevidually.
-	while (j < 3)
-	{
-		l = 0;
-		s = contact.info[k];
-		if (s.size() > 10)
-			s = s.substr(0, 9) + '.';
-		std::cout << '|';
-		while (l < (10 - s.size()))
-		{
-			std::cout << ' ';
-			l++;
-		}
-		std::cout << s;
-		j++;
-		k++;
-	}
-	std::cout << "|" << std::endl;
-	std::cout << " ------------------------------------------- " << std::endl;
+	s = contact.info[k];
+	std::cout << "First name: " << s << std::endl;
+	k++;
+	s = contact.info[k];
+	std::cout << "Last name: " << s << std::endl;
+	k++;
+	s = contact.info[k];
+	std::cout << "Nickname: " << s << std::endl;
+	k++;
+	s = contact.info[k];
+	std::cout << "Phone number: " << s << std::endl;
+	k++;
+	s = contact.info[k];
+	std::cout << "Darkest secret: " << s << std::endl;
 	return (0);
 }
 
@@ -123,6 +149,7 @@ int main(int ac, char **av)
 		return (0);
 	}
 	i = 0;
+	book.set_count(&book);
 	while (1)
 	{
 		std::cout << "Enter command: ";
@@ -135,8 +162,9 @@ int main(int ac, char **av)
 			break ;
 		else if (input == "ADD")
 		{
+			book.increment_count(&book);
 			if (i == 8)
-				i--;
+				i = 0;
 			if (book.add(&book, i) == -1)
 			{
 				std::cout  << std::endl << "End of the input" << std::endl;
@@ -151,6 +179,7 @@ int main(int ac, char **av)
 				std::cout << "The Phonebook is empty, to add a contact please type 'ADD'" << std::endl;
 				continue ;
 			}
+			book.list_all_contacts(&book, 0);
 			while (1)
 			{
 				check = book.search(&book, (i - 1));

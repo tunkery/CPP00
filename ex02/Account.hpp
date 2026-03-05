@@ -23,15 +23,14 @@
 
 class Account {
 
-// static functions can't reach the non static variables in the classes.
 public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void ); // +
-	static int	getTotalAmount( void ); // + the amount of money in the account
-	static int	getNbDeposits( void ); // +
-	static int	getNbWithdrawals( void ); // +
+	static int	getNbAccounts( void );
+	static int	getTotalAmount( void );
+	static int	getNbDeposits( void );
+	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void ); 
 
 	Account( int initial_deposit );
@@ -39,8 +38,8 @@ public:
 
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const; // +
-	void	displayStatus( void ) const; // bu her seyin totalini gosteren fonksiyon
+	int		checkAmount( void ) const;
+	void	displayStatus( void ) const;
 
 
 private:
@@ -50,7 +49,7 @@ private:
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
 
-	static void	_displayTimestamp( void ); // +
+	static void	_displayTimestamp( void );
 
 	int				_accountIndex;
 	int				_amount;
@@ -60,50 +59,6 @@ private:
 	Account( void );
 
 };
-
-// Account::Account( void )
-// {
-// 	if (_nbAccounts <= 100 && _nbAccounts >= 0)
-// 		_accountIndex = _nbAccounts;
-// 	else
-// 	{
-// 		_nbAccounts = 0;
-// 		_totalAmount = 0;
-// 		_totalNbDeposits = 0;
-// 		_totalNbWithdrawals = 0;
-// 		_accountIndex = _nbAccounts;
-// 	}
-// }
-
-// Account::Account( int initial_deposit )
-// {
-// 	if (_nbAccounts <= 100 && _nbAccounts >= 0)
-// 		_accountIndex = _nbAccounts;
-// 	else
-// 	{
-// 		_nbAccounts = 0;
-// 		_totalAmount = 0;
-// 		_totalNbDeposits = 0;
-// 		_totalNbWithdrawals = 0;
-// 		_accountIndex = _nbAccounts;
-// 	}
-// 	_nbAccounts++;
-// 	_amount = initial_deposit;
-// 	_totalAmount += initial_deposit;
-// 	_nbDeposits = 0;
-// 	_nbWithdrawals = 0;
-// 	_displayTimestamp();
-// 	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
-// 	std::cout << ";created" << std::endl;
-
-// }
-
-// Account::~Account( void )
-// {
-// 	_displayTimestamp();
-// 	std::cout << "index:" << _accountIndex << ";amount:" << _amount;
-// 	std::cout << ";closed" << std::endl;
-// }
 
 // ************************************************************************** //
 // vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
