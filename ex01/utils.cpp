@@ -1,4 +1,5 @@
-#include "lib.hpp"
+#include "Phonebook.hpp"
+#include "Contact.hpp"
 
 void	PhoneBook::set_count(PhoneBook *book)
 {

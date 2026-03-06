@@ -1,4 +1,5 @@
-#include "lib.hpp"
+#include "Phonebook.hpp"
+#include "Contact.hpp"
 
 int Contact::is_valid(int i, std::string str)
 {
