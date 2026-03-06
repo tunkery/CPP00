@@ -4,7 +4,7 @@
 # include <limits>
 # include <string>
 # include <iomanip>
-# include "Phonebook.hpp"
+class PhoneBook;
 
 class Contact
 {

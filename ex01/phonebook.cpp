@@ -55,6 +55,7 @@ int	PhoneBook::list_all_contacts(PhoneBook *book, int i)
 {
 	std::string	s;
 	int			j;
+	(void)i;
 	int			k;
 	int			l;
 	int			m;
@@ -90,14 +91,11 @@ int	PhoneBook::list_all_contacts(PhoneBook *book, int i)
 
 int	Contact::show_list(PhoneBook book, Contact contact, int i, std::string str)
 {
-	int	j;
 	int k;
-	int l;
 	std::string s;
 
-	j = 0;
+	(void)book;
 	k = 0;
-	l = 0;
 	i = str[0] - 48;
 	if (contact.is_valid(i, str) == -1)
 	{
