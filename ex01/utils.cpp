@@ -93,6 +93,8 @@ int Contact::add_helper(PhoneBook *book, int i, Contact *contact)
 {
 	std::string str;
 
+	(void)book;
+	(void)i;
 	std::cout << "First name: ";
 	if (!std::getline(std::cin, str))
 		return (-1);
@@ -201,6 +203,8 @@ std::string Contact::search_helper(Contact contact, int i)
 {
 	std::string str;
 
+	(void)contact;
+	(void)i;
 	std::cout << "Give a number between 1 and 8: ";
 	if (!std::getline(std::cin, str))
 		return ("");
